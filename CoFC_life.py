@@ -2,9 +2,10 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from PIL import Image
+import os
 
-
-image = Image.open('LC_image.png')
+image_path = r'C:\Users\daisu\OneDrive\CoFC_Streamlit.py\LC_image.png'
+image = Image.open(image_path)
 st.image(image, caption='班：Co-FC', use_column_width=True)
 
 df = pd.read_csv('suumo4_Co-FC.csv')
