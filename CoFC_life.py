@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from PIL import Image
 import os
+import requests
 from io import BytesIO
 
 # LC_image.pngのURLを指定する
