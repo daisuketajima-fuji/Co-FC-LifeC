@@ -3,9 +3,15 @@ import pandas as pd
 import numpy as np
 from PIL import Image
 import os
+from io import BytesIO
 
-image_path = r'C:\Users\daisu\OneDrive\CoFC_Streamlit.py\LC_image.png'
-image = Image.open(image_path)
+# LC_image.pngのURLを指定する
+image_url = 'https://github.com/daisuketajima-fuji/Co-FC-LifeC/raw/main/LC_image.png'
+
+# 画像を取得して開く
+response = requests.get(image_url)
+image = Image.open(BytesIO(response.content))
+
 st.image(image, caption='班：Co-FC', use_column_width=True)
 
 df = pd.read_csv('suumo4_Co-FC.csv')
