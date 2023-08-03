@@ -2,9 +2,9 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from PIL import Image
-import os
 import requests
 from io import BytesIO
+import folium
 
 # LC_image.pngのURLを指定する
 image_url = 'https://github.com/daisuketajima-fuji/Co-FC-LifeC/raw/main/LC_image.png'
@@ -13,6 +13,7 @@ image_url = 'https://github.com/daisuketajima-fuji/Co-FC-LifeC/raw/main/LC_image
 response = requests.get(image_url)
 image = Image.open(BytesIO(response.content))
 
+# Streamlitで表示する
 st.image(image, caption='班：Co-FC', use_column_width=True)
 
 df = pd.read_csv('suumo4_Co-FC.csv')
@@ -43,18 +44,25 @@ if option_button == True:
     あなたにおすすめの物件は、
     東京都江戸川区東葛西５の1LDK月額125,000円の物件です。
     こちらは、東京メトロ東西線葛西駅徒歩8分、築10年の物件で8階建ての5階に位置しており、バストイレ別、室内乾燥機付き、角部屋です。
-    近くには徒歩5分の位置にOlympic 西葛西店があり、徒歩6分の位置にはマルエツ 葛西クリーンタウン店があります。
+    近くには多くのレストランがありますので、Workを重視するあなたにはぴったりの物件となります。周辺のレストランを地図で表示します。
     """
 
-    kasai5chome_lat = 35.665673215700444
-    kasai5chome_lon = 139.86083312591182
+    # 地図データをローカルに保存したファイルのパス
+    map_html_path = 'restaurants_map.html'
 
-    df_kasai5chome = pd.DataFrame(
-        np.random.rand(10,2)/[80,80]+[kasai5chome_lat,kasai5chome_lon],
-        columns=['lat','lon']
-    )
+    # 地図データを表示
+    st.components.v1.html(open(map_html_path, 'r', encoding='utf-8').read(), height=500)
+  
+    #一旦、以下の地図は非表示とする。
+    #kasai5chome_lat = 35.665673215700444
+    #kasai5chome_lon = 139.86083312591182
 
-    st.map(df_kasai5chome)
+    #df_kasai5chome = pd.DataFrame(
+    #    np.random.rand(10,2)/[80,80]+[kasai5chome_lat,kasai5chome_lon],
+    #    columns=['lat','lon']
+    #)
+
+    #st.map(df_kasai5chome)
 else:
     st.write('サイドバーから条件を選択して、実行ボタンを押してください。')
 
