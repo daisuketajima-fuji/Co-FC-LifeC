@@ -4,7 +4,6 @@ import numpy as np
 from PIL import Image
 import requests
 from io import BytesIO
-import folium
 
 # LC_image.pngのURLを指定する
 image_url = 'https://github.com/daisuketajima-fuji/Co-FC-LifeC/raw/main/LC_image.png'
