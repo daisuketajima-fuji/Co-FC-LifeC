@@ -47,7 +47,7 @@ if option_button == True:
     """
 
     # 地図データをローカルに保存したファイルのパス
-    map_html_path = 'restaurants_map.html'
+    map_html_path = 'restaurants_map_kasai5chome.html'
 
     # 地図データを表示
     st.components.v1.html(open(map_html_path, 'r', encoding='utf-8').read(), height=500)
